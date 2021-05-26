@@ -1,13 +1,546 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fdfcf3;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 36px;
+}
+
+.right-feed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-all-notes {
+  display: flex;
+}
+
+.search {
+  display: flex;
+}
+
+.feed-search {
+  width: 480px;
+  height: 60px;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+}
+
+.feed-search::placeholder {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  color: #acacac;
+  padding-left: 16px;
+}
+.feed-search:focus::placeholder {
+  color: transparent;
+}
+
+.feed-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100px;
+  height: 60px;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  /* margin: 0px 35px 0px 14px; */
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::before {
+  content: "";
+  background-image: url("./../src/assets/chevron_down.png");
+  background-size: 14px;
+  width: 14px;
+  height: 8px;
+  background-color: #fff;
+  position: absolute;
+  top: 44%;
+  right: calc(100% - 90px);
+  pointer-events: none;
+}
+
+.all-notes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 34px;
+  background: #ffce89;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.all-notes a {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+
+.all-notes:hover {
+  background: rgb(255, 99, 71);
+}
+
+.all-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 18px;
+}
+
+.add-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 34px;
+  background: linear-gradient(135deg, #61b15a 0%, #adce74 100%);
+  border-radius: 12px;
+  margin-left: 14px;
+  cursor: pointer;
+}
+
+.add-note:hover {
+  background: rgb(255, 99, 71);
+}
+
+.add-note a {
+  display: flex;
+  text-decoration: none;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+
+.create-note-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.add-note-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 44px;
+}
+
+.create-note-button {
+  width: 174px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #61b15a 0%, #adce74 100%);
+  border-radius: 12px;
+  float: right;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: -246px;
+  bottom: 648px;
+}
+
+.create-note-text {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #fff;
+  margin-left: 17px;
+}
+
+.right-note-content {
+  width: 62%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.note-input-name {
+  width: 670px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: none;
+}
+
+.note-added-date {
+  width: 210px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: none;
+  margin-left: 16px;
+}
+
+.all-datails {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+}
+
+.select-with-date {
+  display: flex;
+  margin-top: 16px;
+}
+
+.description-input {
+  width: 670px;
+  height: 478px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: none;
+  resize: none;
+  margin-top: 16px;
+}
+
+.description-input,
+.note-input-name::placeholder {
+  padding: 20px 0px 0px 16px;
+}
+.note-added-date::placeholder {
+  padding: 21px 0px 0px 15px;
+}
+.right-search-input {
+  width: 596px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: none;
+  margin-right: 14px;
+}
+
+.right-search-input::placeholder {
+  padding: 20px 0px 0px 16px;
+}
+.right-search-input,
+.note-input-name,
+.note-added-date,
+.description-input:focus {
+  outline: none;
+}
+.searchFound {
+  width: 60px;
+  height: 60px;
+  background: #fff76a;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.images {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 29px;
+  cursor: pointer;
+  padding-left: 16px;
+}
+.images div {
+  position: relative;
+  padding: 5px;
+}
+
+.marked::before {
+  content: url(./assets/check.png);
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 15px;
+}
+
+.note {
+  max-width: 329px;
+  height: 280px;
+  position: relative;
+  border-radius: 12px;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+
+.note img {
+  width: 325px;
+  height: 280px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.sub-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-sub-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1e2022;
+}
+
+.note-date-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #1e2022;
+}
+
+.note-description {
+  width: 86%;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  bottom: 19px;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.note-description p,
+h4 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.note-description-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #1e2022;
+}
+
+.emodji {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 20px;
+  right: 8%;
+}
+
+.content {
+  width: 100%;
+  margin-top: 44px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 46px;
+  /* margin-right: 20px; */
+}
+.content .note {
+  flex-basis: 25%;
+  padding-right: 20px;
+}
+
+.content-none {
+  font-family: IBM Plex Sans;
+  color: darkgray;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}
+
+/* ................................................................................ */
+
+/* modal style */
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.modal-content {
+  width: 1300px;
+  height: 850px;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  transform: scale(0.3);
+  transition: 0.4s all;
+  position: relative;
+}
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content.active {
+  transform: scale(0.8);
+}
+
+.modal-subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-subtitle-df {
+  display: flex;
+  align-items: center;
+}
+
+.modal-text-emodji {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.modal-text-subtitle {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  /* line-height: 56px; */
+  color: #1e2022;
+  margin-left: 20px;
+}
+
+.modal-description {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.modal-description img {
+  width: 500px;
+  height: 700px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.modal-date {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  /* line-height: 28px; */
+}
+
+.modal-description-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1e2022;
+  padding-left: 40px;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Alert */
+
+.alert {
+  padding: 20px;
+  display: none;
+  color: white;
+  margin-top: 20px;
+  font-size: 22px;
+  border-radius: 14px;
+  border: 2px solid rgb(252, 96, 96);
+  /* position: fixed; */
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert.alert-warning {
+  background-color: rgb(243, 192, 63);
+  display: block;
+}
+.alert.alert-successfull {
+  background-color: rgb(21, 163, 21);
+  display: block;
+}
+
+.closebtn:hover {
+  color: #1e2022;
 }

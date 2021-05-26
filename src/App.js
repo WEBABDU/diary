@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import "./App.css";
+import AddNote from "./components/AddNote";
+import Content from "./components/Content";
+import Navbar from "./components/Navbar";
+import { AlertState } from "./context/alert/AlertState";
+import { ModalState } from "./context/modal/ModalState";
+import { NotesState } from "./context/notes/NotesState";
 
-function App() {
+const App = () => {
+  const WhithRouterComponent = withRouter(Navbar)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AlertState>
+      <ModalState>
+        <NotesState>
+          <BrowserRouter>
+            <div className="container">
+              
+              <WhithRouterComponent />
+              <Switch>
+                <Route path="/" exact component={Content} />
+                <Route path="/content" component={Content} />
+                <Route path="/add" component={AddNote} />
+              </Switch>
+            </div>
+          </BrowserRouter>
+        </NotesState>
+      </ModalState>
+    </AlertState>
   );
-}
+};
 
 export default App;
